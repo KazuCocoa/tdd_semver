@@ -19,7 +19,7 @@ defmodule Versions do
     |> Map.put(:minor, minor)
     |> Map.put(:patch, patch)
   end
-  def semiver(major, minor, patch)
+  def semver(major, minor, patch)
     when is_integer(major) and is_integer(minor) and is_integer(patch) do
     cond do
       major < 0 -> raise ArgumentError, message: "major should bigger and equal to 0"
@@ -28,7 +28,7 @@ defmodule Versions do
       true -> raise ArgumentError
     end
   end
-  def semiver(_, _, _), do: raise ArgumentError, message: "major, minor and patch should be integer"
+  def semver(_, _, _), do: raise ArgumentError, message: "major, minor and patch should be integer"
 
   @spec compare(semiver, semiver) :: lhs | rhs
   def compare(%Versions{major: l_major, minor: l_minor, patch: l_patch},

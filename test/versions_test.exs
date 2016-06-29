@@ -14,13 +14,13 @@ defmodule VersionsTest do
   end
 
   describe "argument error with negative value" do
-    test "major", do: assert_raise(ArgumentError, "major should bigger and equal to 0", fn -> Versions.semiver(-1, 1, 1) end)
-    test "minor", do: assert_raise(ArgumentError, "minor should bigger and equal to 0", fn -> Versions.semiver(1, -1, 1) end)
-    test "patch", do: assert_raise(ArgumentError, "patch should bigger and equal to 0", fn -> Versions.semiver(1, 1, -1) end)
+    test "major", do: assert_raise(ArgumentError, "major should bigger and equal to 0", fn -> Versions.semver(-1, 1, 1) end)
+    test "minor", do: assert_raise(ArgumentError, "minor should bigger and equal to 0", fn -> Versions.semver(1, -1, 1) end)
+    test "patch", do: assert_raise(ArgumentError, "patch should bigger and equal to 0", fn -> Versions.semver(1, 1, -1) end)
   end
 
   test "argument error with no integer" do
-    assert_raise(ArgumentError, "major, minor and patch should be integer", fn -> Versions.semiver("1", "0", "-1") end)
+    assert_raise(ArgumentError, "major, minor and patch should be integer", fn -> Versions.semver("1", "0", "-1") end)
   end
 
   describe "compare lhs and rhs" do
