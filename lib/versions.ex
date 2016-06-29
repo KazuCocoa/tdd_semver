@@ -42,4 +42,10 @@ defmodule Versions do
     end
   end
   def compare(_lhs, _rhs), do: raise ArgumentError, message: "major, minor and patch should be integer"
+
+  @spec up(semiver, String.t) :: semiver
+  def up(%Versions{major: major, minor: _minor, patch: _patch}, "major"), do: Versions.semver major + 1, 0, 0
+  def up(%Versions{major: major, minor: minor, patch: _patch}, "minor"), do: Versions.semver major, minor + 1, 0
+  def up(%Versions{major: major, minor: minor, patch: patch}, "patch"), do: Versions.semver major, minor, patch + 1
+  def up(_versions, _), do: raise ArgumentError, message: "no elements"
 end
